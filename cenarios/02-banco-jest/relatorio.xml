@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="10" failures="7" errors="0" time="0.477">
+  <testsuite name="Transferências" errors="0" failures="3" skipped="0" timestamp="2026-11-08T11:14:13" time="0.326" tests="6">
+    <testcase classname="transferencias.test.js › Transferências" name="transfere valor válido entre contas" time="0.007">
+    </testcase>
+    <testcase classname="transferencias.test.js › Transferências" name="recusa valor negativo" time="0.007">
+    </testcase>
+    <testcase classname="transferencias.test.js › Transferências" name="recusa transferência sem saldo suficiente" time="0.005">
+      <failure>Error: expect(received).toEqual(expected) // deep equality
+
+- Expected  - 2
++ Received  + 2
+
+  Object {
+-   &quot;motivo&quot;: &quot;saldo insuficiente&quot;,
+-   &quot;status&quot;: &quot;recusada&quot;,
++   &quot;saldo&quot;: -50,
++   &quot;status&quot;: &quot;concluida&quot;,
+  }
+    at Object.toEqual (/builds/banco-digital/tests/transferencias.test.js:34:23)
+    at Promise.then.completed (/builds/banco-digital/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/builds/banco-digital/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:121:9)
+    at run (/builds/banco-digital/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="transferencias.test.js › Transferências" name="respeita o limite noturno" time="0.001">
+      <failure>Error: expect(received).toEqual(expected) // deep equality
+
+- Expected  - 2
++ Received  + 2
+
+  Object {
+-   &quot;motivo&quot;: &quot;limite noturno excedido&quot;,
+-   &quot;status&quot;: &quot;recusada&quot;,
++   &quot;saldo&quot;: 3999,
++   &quot;status&quot;: &quot;concluida&quot;,
+  }
+    at Object.toEqual (/builds/banco-digital/tests/transferencias.test.js:46:23)
+    at Promise.then.completed (/builds/banco-digital/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/builds/banco-digital/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:121:9)
+    at run (/builds/banco-digital/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="transferencias.test.js › Transferências" name="consulta antifraude em transferência alta" time="0">
+      <failure>Error: Timeout: serviço antifraude não respondeu em 5398ms
+    at consultarAntifraude (/builds/banco-digital/src/transferencias.js:9:9)
+    at consultarAntifraude (/builds/banco-digital/src/transferencias.js:13:24)
+    at Object.transferir (/builds/banco-digital/tests/transferencias.test.js:54:23)
+    at Promise.then.completed (/builds/banco-digital/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/builds/banco-digital/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:121:9)
+    at run (/builds/banco-digital/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="transferencias.test.js › Extrato" name="lista movimentos da conta" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="Pix" errors="0" failures="4" skipped="0" timestamp="2026-11-08T11:14:13" time="0.044" tests="4">
+    <testcase classname="pix.test.js › Pix" name="envia Pix para chave e-mail" time="0.001">
+      <failure>Error: Timeout: serviço antifraude não respondeu em 5237ms
+    at consultarAntifraude (/builds/banco-digital/src/transferencias.js:9:9)
+    at consultarAntifraude (/builds/banco-digital/src/transferencias.js:13:24)
+    at transferir (/builds/banco-digital/src/transferencias.js:24:10)
+    at Object.enviarPix (/builds/banco-digital/tests/pix.test.js:10:23)
+    at Promise.then.completed (/builds/banco-digital/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/builds/banco-digital/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:121:9)
+    at run (/builds/banco-digital/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="pix.test.js › Pix" name="envia Pix para chave CPF" time="0.001">
+      <failure>Error: Timeout: serviço antifraude não respondeu em 5164ms
+    at consultarAntifraude (/builds/banco-digital/src/transferencias.js:9:9)
+    at consultarAntifraude (/builds/banco-digital/src/transferencias.js:13:24)
+    at transferir (/builds/banco-digital/src/transferencias.js:24:10)
+    at Object.enviarPix (/builds/banco-digital/tests/pix.test.js:22:23)
+    at Promise.then.completed (/builds/banco-digital/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/builds/banco-digital/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:121:9)
+    at run (/builds/banco-digital/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="pix.test.js › Pix" name="envia Pix para chave aleatória" time="0">
+      <failure>Error: Chave Pix não encontrada no DICT (protocolo 1794136454002622)
+    at enviarPix (/builds/banco-digital/src/transferencias.js:22:11)
+    at Object.enviarPix (/builds/banco-digital/tests/pix.test.js:34:23)
+    at Promise.then.completed (/builds/banco-digital/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/builds/banco-digital/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:121:9)
+    at run (/builds/banco-digital/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+    <testcase classname="pix.test.js › Pix" name="envia Pix para chave telefone" time="0">
+      <failure>Error: Chave Pix não encontrada no DICT (protocolo 1794136454003563)
+    at enviarPix (/builds/banco-digital/src/transferencias.js:22:11)
+    at Object.enviarPix (/builds/banco-digital/tests/pix.test.js:46:23)
+    at Promise.then.completed (/builds/banco-digital/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/builds/banco-digital/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/builds/banco-digital/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/builds/banco-digital/node_modules/jest-circus/build/run.js:121:9)
+    at run (/builds/banco-digital/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/builds/banco-digital/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/builds/banco-digital/node_modules/jest-runner/build/runTest.js:444:34)</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

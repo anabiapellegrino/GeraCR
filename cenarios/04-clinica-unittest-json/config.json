@@ -1,0 +1,42 @@
+{
+  "projeto": "Clínica - Agenda de Consultas",
+  "prefixo_titulo": "[DEFEITO]",
+  "ambiente": {
+    "Ambiente": "Homologação",
+    "App": "Agenda Web 1.8",
+    "Banco": "PostgreSQL 16"
+  },
+  "labels": [
+    "agenda",
+    "unittest",
+    "regressao"
+  ],
+  "severidades": [
+    "Bloqueante",
+    "Grave",
+    "Moderada",
+    "Leve"
+  ],
+  "severidade_padrao": "Moderada",
+  "regras_severidade": [
+    {
+      "campo": "mensagem",
+      "contem": "serviço de agenda",
+      "severidade": "Bloqueante"
+    },
+    {
+      "campo": "teste",
+      "contem": [
+        "horario",
+        "sobreposto"
+      ],
+      "severidade": "Grave"
+    },
+    {
+      "campo": "tipo",
+      "contem": "KeyError",
+      "severidade": "Grave"
+    }
+  ],
+  "linhas_de_evidencia": 10
+}

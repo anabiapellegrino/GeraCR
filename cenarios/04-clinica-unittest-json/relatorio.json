@@ -1,0 +1,85 @@
+{
+  "ferramenta": "unittest",
+  "testes": [
+    {
+      "suite": "test_agendamento.TestAgenda",
+      "nome": "test_agendar_consulta",
+      "status": "erro",
+      "tipo": "TimeoutError",
+      "mensagem": "TimeoutError: serviço de agenda não respondeu em 3634ms (tentativa às 09:15:44)",
+      "detalhe": "Traceback (most recent call last):\n  File \"test_agendamento.py\", line 13, in test_agendar_consulta\n    confirmacao = chamar_servico_de_agenda(acao)\n  File \"clinica.py\", line 15, in chamar_servico_de_agenda\n    raise TimeoutError(\n        f\"serviço de agenda não respondeu em {espera}ms (tentativa às {datetime.now():%H:%M:%S})\"\n    )\nTimeoutError: serviço de agenda não respondeu em 3634ms (tentativa às 09:15:44)"
+    },
+    {
+      "suite": "test_agendamento.TestAgenda",
+      "nome": "test_cancelar_consulta",
+      "status": "erro",
+      "tipo": "TimeoutError",
+      "mensagem": "TimeoutError: serviço de agenda não respondeu em 3774ms (tentativa às 09:15:44)",
+      "detalhe": "Traceback (most recent call last):\n  File \"test_agendamento.py\", line 33, in test_cancelar_consulta\n    confirmacao = chamar_servico_de_agenda(acao)\n  File \"clinica.py\", line 15, in chamar_servico_de_agenda\n    raise TimeoutError(\n        f\"serviço de agenda não respondeu em {espera}ms (tentativa às {datetime.now():%H:%M:%S})\"\n    )\nTimeoutError: serviço de agenda não respondeu em 3774ms (tentativa às 09:15:44)"
+    },
+    {
+      "suite": "test_agendamento.TestAgenda",
+      "nome": "test_horario_sobreposto_nao_esta_livre",
+      "status": "falhou",
+      "tipo": "AssertionError",
+      "mensagem": "AssertionError: True is not false : 14:15 se sobrepõe à consulta das 14:00",
+      "detalhe": "Traceback (most recent call last):\n  File \"test_agendamento.py\", line 56, in test_horario_sobreposto_nao_esta_livre\n    self.assertFalse(livre, \"14:15 se sobrepõe à consulta das 14:00\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false : 14:15 se sobrepõe à consulta das 14:00"
+    },
+    {
+      "suite": "test_agendamento.TestAgenda",
+      "nome": "test_horario_vago_esta_livre",
+      "status": "passou",
+      "tipo": "",
+      "mensagem": "",
+      "detalhe": ""
+    },
+    {
+      "suite": "test_agendamento.TestAgenda",
+      "nome": "test_lembrete_por_sms",
+      "status": "ignorado",
+      "tipo": "",
+      "mensagem": "lembrete por SMS ainda não foi implementado",
+      "detalhe": "lembrete por SMS ainda não foi implementado"
+    },
+    {
+      "suite": "test_agendamento.TestAgenda",
+      "nome": "test_remarcar_consulta",
+      "status": "erro",
+      "tipo": "TimeoutError",
+      "mensagem": "TimeoutError: serviço de agenda não respondeu em 3576ms (tentativa às 09:15:44)",
+      "detalhe": "Traceback (most recent call last):\n  File \"test_agendamento.py\", line 23, in test_remarcar_consulta\n    confirmacao = chamar_servico_de_agenda(acao)\n  File \"clinica.py\", line 15, in chamar_servico_de_agenda\n    raise TimeoutError(\n        f\"serviço de agenda não respondeu em {espera}ms (tentativa às {datetime.now():%H:%M:%S})\"\n    )\nTimeoutError: serviço de agenda não respondeu em 3576ms (tentativa às 09:15:44)"
+    },
+    {
+      "suite": "test_agendamento.TestFaturamento",
+      "nome": "test_consulta_particular_paga_valor_cheio",
+      "status": "passou",
+      "tipo": "",
+      "mensagem": "",
+      "detalhe": ""
+    },
+    {
+      "suite": "test_agendamento.TestFaturamento",
+      "nome": "test_convenio_em_minusculas",
+      "status": "passou",
+      "tipo": "",
+      "mensagem": "",
+      "detalhe": ""
+    },
+    {
+      "suite": "test_agendamento.TestFaturamento",
+      "nome": "test_convenio_escrito_com_maiusculas",
+      "status": "erro",
+      "tipo": "KeyError",
+      "mensagem": "KeyError: 'Unimed'",
+      "detalhe": "Traceback (most recent call last):\n  File \"test_agendamento.py\", line 79, in test_convenio_escrito_com_maiusculas\n    valor = valor_da_consulta(preco, convenio)\n  File \"clinica.py\", line 31, in valor_da_consulta\n    return round(preco * (1 - desconto_do_convenio(convenio)), 2)\n                              ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"clinica.py\", line 27, in desconto_do_convenio\n    return CONVENIOS[nome]\n           ~~~~~~~~~^^^^^^\nKeyError: 'Unimed'"
+    },
+    {
+      "suite": "test_agendamento.TestRegras",
+      "nome": "test_psiquiatria_exige_idade_minima",
+      "status": "passou",
+      "tipo": "",
+      "mensagem": "",
+      "detalhe": ""
+    }
+  ]
+}

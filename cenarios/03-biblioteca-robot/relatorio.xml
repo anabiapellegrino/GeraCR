@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Biblioteca" tests="9" errors="0" failures="6" skipped="1" time="1.245" timestamp="2026-11-08T08:14:14.356121">
+<testsuite name="Emprestimos" tests="4" errors="0" failures="2" skipped="0" time="0.008" timestamp="2026-11-08T08:14:14.380572">
+<testcase classname="Biblioteca.Emprestimos" name="Emprestar livro disponível" time="0.002">
+</testcase>
+<testcase classname="Biblioteca.Emprestimos" name="Prazo de devolução padrão é 14 dias" time="0.001">
+<failure message="Prazo de devolução deveria ser 14 dias, mas foi 7" type="AssertionError"/>
+</testcase>
+<testcase classname="Biblioteca.Emprestimos" name="Leitor com multa não pode emprestar" time="0.001">
+<failure message="Empréstimo deveria ser bloqueado para leitor com multa pendente" type="AssertionError"/>
+</testcase>
+<testcase classname="Biblioteca.Emprestimos" name="Buscar livro pelo título" time="0.001">
+</testcase>
+</testsuite>
+<testsuite name="Leitores" tests="5" errors="0" failures="4" skipped="1" time="1.212" timestamp="2026-11-08T08:14:14.388832">
+<testsuite name="Cadastro" tests="3" errors="0" failures="2" skipped="1" time="0.007" timestamp="2026-11-08T08:14:14.389412">
+<testcase classname="Biblioteca.Leitores.Cadastro" name="Cadastrar novo leitor" time="0.001">
+<failure message="ConnectionError: conexão com o banco perdida às 2026-11-08T08:14:14" type="AssertionError"/>
+</testcase>
+<testcase classname="Biblioteca.Leitores.Cadastro" name="Atualizar e-mail do leitor" time="0.001">
+<failure message="ConnectionError: conexão com o banco perdida às 2026-11-08T08:14:14" type="AssertionError"/>
+</testcase>
+<testcase classname="Biblioteca.Leitores.Cadastro" name="Exportar carteirinha em PDF" time="0.000">
+<skipped message="Exportação em PDF ainda não implementada" type="SkipExecution"/>
+</testcase>
+</testsuite>
+<testsuite name="Multas" tests="2" errors="0" failures="2" skipped="0" time="1.204" timestamp="2026-11-08T08:14:14.396408">
+<testcase classname="Biblioteca.Leitores.Multas" name="Calcular multa por atraso" time="0.002">
+<failure message="ConnectionError: conexão com o banco perdida às 2026-11-08T08:14:15" type="AssertionError"/>
+</testcase>
+<testcase classname="Biblioteca.Leitores.Multas" name="Quitar multa pendente" time="0.001">
+<failure message="ConnectionError: conexão com o banco perdida às 2026-11-08T08:14:15" type="AssertionError"/>
+</testcase>
+</testsuite>
+</testsuite>
+</testsuite>

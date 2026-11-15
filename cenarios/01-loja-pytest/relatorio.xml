@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="9" time="0.033" timestamp="2026-11-08T08:14:11.648695-03:00" hostname="vm"><testcase classname="test_checkout" name="test_adicionar_item" time="0.000" /><testcase classname="test_checkout" name="test_total_com_varios_itens" time="0.000" /><testcase classname="test_checkout" name="test_cupom_10_porcento" time="0.000"><failure message="assert 89.9 == 89.91">def test_cupom_10_porcento():
+        # Arrange
+        subtotal, desconto = 99.90, 10
+    
+        # Act
+        valor = aplicar_cupom(subtotal, desconto)
+    
+        # Assert
+&gt;       assert valor == 89.91
+E       assert 89.9 == 89.91
+
+test_checkout.py:34: AssertionError</failure></testcase><testcase classname="test_checkout" name="test_cupom_expirado_rejeitado" time="0.000" /><testcase classname="test_checkout" name="test_frete_gratis_a_partir_de_200" time="0.000"><failure message="assert 19.9 == 0.0">def test_frete_gratis_a_partir_de_200():
+        # Arrange
+        subtotal = 200.0
+    
+        # Act
+        valor = frete(subtotal)
+    
+        # Assert
+&gt;       assert valor == 0.0
+E       assert 19.9 == 0.0
+
+test_checkout.py:56: AssertionError</failure></testcase><testcase classname="test_checkout" name="test_frete_padrao" time="0.000" /><testcase classname="test_checkout" name="test_pagamento_cartao" time="0.000"><failure message="ConnectionError: gateway indisponível (req=4b6cbb80)">def test_pagamento_cartao():
+        # Arrange
+        metodo, valor = "cartao", 89.91
+    
+        # Act
+&gt;       resultado = pagar(metodo, valor)
+                    ^^^^^^^^^^^^^^^^^^^^
+
+test_checkout.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+metodo = 'cartao', valor = 89.91
+
+    def pagar(metodo, valor):
+&gt;       raise ConnectionError(f"gateway indisponível (req={uuid.uuid4().hex[:8]})")
+E       ConnectionError: gateway indisponível (req=4b6cbb80)
+
+loja.py:28: ConnectionError</failure></testcase><testcase classname="test_checkout" name="test_pagamento_pix" time="0.000"><failure message="ConnectionError: gateway indisponível (req=05633d5e)">def test_pagamento_pix():
+        # Arrange
+        metodo, valor = "pix", 89.91
+    
+        # Act
+&gt;       resultado = pagar(metodo, valor)
+                    ^^^^^^^^^^^^^^^^^^^^
+
+test_checkout.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+metodo = 'pix', valor = 89.91
+
+    def pagar(metodo, valor):
+&gt;       raise ConnectionError(f"gateway indisponível (req={uuid.uuid4().hex[:8]})")
+E       ConnectionError: gateway indisponível (req=05633d5e)
+
+loja.py:28: ConnectionError</failure></testcase><testcase classname="test_checkout" name="test_pagamento_boleto" time="0.000"><failure message="ConnectionError: gateway indisponível (req=2adb5da5)">def test_pagamento_boleto():
+        # Arrange
+        metodo, valor = "boleto", 89.91
+    
+        # Act
+&gt;       resultado = pagar(metodo, valor)
+                    ^^^^^^^^^^^^^^^^^^^^
+
+test_checkout.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+metodo = 'boleto', valor = 89.91
+
+    def pagar(metodo, valor):
+&gt;       raise ConnectionError(f"gateway indisponível (req={uuid.uuid4().hex[:8]})")
+E       ConnectionError: gateway indisponível (req=2adb5da5)
+
+loja.py:28: ConnectionError</failure></testcase></testsuite></testsuites>

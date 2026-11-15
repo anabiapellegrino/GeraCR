@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+saida/
+node_modules/
+cenarios/03-biblioteca-robot/suite/output.xml
+.venv/
+venv/
+*.egg-info/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

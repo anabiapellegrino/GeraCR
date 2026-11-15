@@ -1,0 +1,45 @@
+{
+  "projeto": "Banco Digital - API de Transferências",
+  "prefixo_titulo": "[API]",
+  "ambiente": {
+    "Ambiente": "Staging",
+    "API": "v3.2.0",
+    "Runtime": "Node 22"
+  },
+  "labels": [
+    "api",
+    "jest",
+    "regressao"
+  ],
+  "severidades": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "severidade_padrao": "P3",
+  "regras_severidade": [
+    {
+      "campo": "mensagem",
+      "contem": "antifraude",
+      "severidade": "P1"
+    },
+    {
+      "campo": "teste",
+      "contem": [
+        "saldo",
+        "limite"
+      ],
+      "severidade": "P1"
+    },
+    {
+      "campo": "teste",
+      "contem": "pix",
+      "severidade": "P2"
+    }
+  ],
+  "ignorar_na_mensagem": [
+    "\\d{10,}"
+  ],
+  "linhas_de_evidencia": 6
+}

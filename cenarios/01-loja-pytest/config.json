@@ -1,0 +1,35 @@
+{
+  "projeto": "Loja Virtual",
+  "prefixo_titulo": "[BUG]",
+  "ambiente": {
+    "Ambiente": "QA",
+    "Versão": "2.4.1",
+    "Navegador": "Chrome 130"
+  },
+  "labels": [
+    "automacao",
+    "checkout"
+  ],
+  "severidades": [
+    "Crítica",
+    "Alta",
+    "Média",
+    "Baixa"
+  ],
+  "severidade_padrao": "Média",
+  "regras_severidade": [
+    {
+      "campo": "teste",
+      "contem": "pagamento",
+      "severidade": "Crítica"
+    },
+    {
+      "campo": "teste",
+      "contem": [
+        "cupom",
+        "total"
+      ],
+      "severidade": "Alta"
+    }
+  ]
+}

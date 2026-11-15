@@ -1,0 +1,33 @@
+{
+  "projeto": "Sistema de Biblioteca",
+  "prefixo_titulo": "[Biblioteca]",
+  "ambiente": {
+    "Ambiente": "Homologação",
+    "Versão": "1.8.0",
+    "Banco": "PostgreSQL 16"
+  },
+  "labels": [
+    "robot",
+    "aceitacao"
+  ],
+  "severidades": [
+    "Highest",
+    "High",
+    "Medium",
+    "Low",
+    "Lowest"
+  ],
+  "severidade_padrao": "Medium",
+  "regras_severidade": [
+    {
+      "campo": "tipo",
+      "contem": "ConnectionError",
+      "severidade": "Highest"
+    },
+    {
+      "campo": "teste",
+      "contem": "Emprestimos",
+      "severidade": "High"
+    }
+  ]
+}

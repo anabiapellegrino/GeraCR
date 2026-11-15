@@ -1,0 +1,25 @@
+{
+  "descricao": "Agenda de clínica testada com unittest (Python), relatório no formato JSON do GeraCR",
+  "testes": 10,
+  "falhas": 5,
+  "crs": [
+    {
+      "severidade": "Bloqueante",
+      "testes": 3,
+      "tipo": "TimeoutError",
+      "titulo_contem": "serviço de agenda"
+    },
+    {
+      "severidade": "Grave",
+      "testes": 1,
+      "tipo": "AssertionError",
+      "titulo_contem": "14:15 se sobrepõe"
+    },
+    {
+      "severidade": "Grave",
+      "testes": 1,
+      "tipo": "KeyError",
+      "titulo_contem": "Unimed"
+    }
+  ]
+}
