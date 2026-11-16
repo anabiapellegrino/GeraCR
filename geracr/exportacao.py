@@ -13,7 +13,6 @@ nota_de_agrupamento = lambda quantidade: (
     else ()
 )
 
-#os testes de uma CR podem ter mensagens com IDs ou horários diferentes
 mensagens_diferentes = lambda cr: len(set(cr.mensagens)) > 1
 
 legenda_do_obtido = lambda cr: (
@@ -24,14 +23,14 @@ legenda_do_obtido = lambda cr: (
     else "Mensagem de erro do teste:"
 )
 
-#com mensagens diferentes, cada teste mostra a sua, para não perder o ID de nenhum
+#cada teste com o seu ID
 linhas_dos_testes = lambda cr: (
     map(lambda par: f"- `{par[0]}`: `{par[1]}`", zip(cr.testes, cr.mensagens))
     if mensagens_diferentes(cr)
     else map(lambda teste: f"- `{teste}`", cr.testes)
 )
 
-#quando o relatório só traz a mensagem, a evidência repetiria o resultado obtido
+#evita repetir o resultado obtido
 secao_de_evidencia = lambda cr: (
     ()
     if cr.evidencia.strip() == cr.resultado_obtido.strip()

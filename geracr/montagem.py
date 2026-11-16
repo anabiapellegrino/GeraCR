@@ -8,10 +8,10 @@ from .modelo import CR, identificador
 
 LIMITE_TITULO = 110
 
-#"Error:" e "AssertionError:" no começo da mensagem não dizem nada que a tabela já não diga
+#não acrescenta nada ao título
 PREFIXO_GENERICO = re.compile(r"^(?:Assertion)?Error:\s*")
 
-#(trechos do tipo ou da mensagem, explicação em português): vale a primeira que bater
+#vale a primeira que bater
 EXPLICACOES = (
     (("timeout", "timed out"), "um serviço demorou demais para responder (timeout)"),
     (("connection", "conexão", "indisponível"), "a conexão com um serviço ou banco de dados falhou"),
@@ -19,11 +19,10 @@ EXPLICACOES = (
     (("assert", "expect(", "deveria"), "o sistema devolveu um resultado diferente do esperado"),
 )
 
-#linhas da pilha que são de bibliotecas ou do próprio Node/Python, não do sistema testado
 LINHA_DE_BIBLIOTECA = re.compile(r"node_modules|node:internal|<anonymous>|site-packages|[\\/]lib[\\/]python")
-#linhas só de enfeite: ~~~^^^ do Python 3.11+ embaixo do erro e _ _ _ que o pytest põe entre funções
+
 SUBLINHADO = re.compile(r"^\s*[~^_][~^_\s]*$")
-#pastas antes do nome do arquivo: C:\...\ ou /.../
+
 PASTAS = re.compile(r"""(?:\b[A-Za-z]:\\|(?<=[\s("'])/)(?:[^\\/\s"'()][^\\/\n"'()]*[\\/])+""")
 
 
@@ -31,7 +30,7 @@ primeira_linha = lambda texto: (texto.strip().splitlines() or [""])[0]
 
 truncar = lambda texto, limite: texto if len(texto) <= limite else texto[: limite - 1].rstrip() + "…"
 
-#test_cupom_10_porcento -> cupom 10 porcento
+
 nome_legivel = lambda nome: re.sub(r"^test_?", "", nome).replace("_", " ").strip() or nome
 
 formatar_ambiente = lambda ambiente: (
@@ -83,7 +82,7 @@ sem_pastas = lambda texto: PASTAS.sub("", texto)
 
 linha_do_projeto = lambda linha: not (LINHA_DE_BIBLIOTECA.search(linha) or SUBLINHADO.match(linha))
 
-#primeiro descarta as linhas de bibliotecas (o caminho diz se é node_modules), depois encurta os caminhos
+#filtra antes de encurtar os caminhos
 linhas_do_projeto = lambda texto: tuple(
     map(sem_pastas, filter(linha_do_projeto, dedent(texto.strip("\n")).rstrip().splitlines()))
 )

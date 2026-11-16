@@ -93,7 +93,7 @@ Os outros arquivos são `modelo.py` (os registros), `funcional.py` (funções ge
 | Avaliação ansiosa | `em_sequencia` no `cli.py` encadeia imprimir e gravar sem comandos |
 | Polimorfismo paramétrico | as funções de `funcional.py` servem para qualquer tipo, com assinatura no estilo do Haskell |
 
-O único comando de controle é o `try` do `__main__.py`, porque um XML ou JSON quebrado chega como exceção e o Python só captura exceção com `try`. Config com tipo errado não vira exceção: `validar_config` devolve os problemas como valor e o programa só avisa.
+O programa não tem `try`. Os erros previsíveis (relatório ou config que não existe, extensão desconhecida, config com tipo errado) são verificados antes, com expressões condicionais em `executar_com`, e `validar_config` devolve os problemas como valor. Um arquivo que existe mas está com o conteúdo quebrado (XML ou JSON inválido, regex errada no config) faz o Python mostrar o erro dele e parar, sem gravar nenhuma CR.
 
 ## Cenários
 
@@ -118,7 +118,7 @@ cd cenarios/03-biblioteca-robot/suite && python -m robot --xunit ../relatorio.xm
 cd cenarios/04-clinica-unittest-json/suite && python gerar_relatorio.py ../relatorio.json
 ```
 
-Os IDs, durações e horários mudam toda vez, mas as CRs geradas continuam as mesmas.
+Os IDs, durações e horários mudam toda vez, mas os títulos e o agrupamento das CRs continuam os mesmos.
 
 ## config.json
 

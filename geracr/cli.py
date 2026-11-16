@@ -29,7 +29,7 @@ ler_config = lambda caminho: json.loads(ler_texto(caminho)) if caminho else {}
 
 formato_de = lambda args: args.formato or detectar_formato(args.relatorio)
 
-#newline="": grava as quebras de linha como estão, então o .md sai igual no Windows e no Linux
+#mesma quebra de linha no Windows e no Linux
 gravar = lambda arquivo: em_sequencia(
     arquivo.caminho.write_text(arquivo.conteudo, encoding="utf-8", newline=""), arquivo.caminho
 )
