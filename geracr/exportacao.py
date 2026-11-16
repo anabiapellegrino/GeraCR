@@ -4,9 +4,6 @@ import unicodedata
 from .funcional import compor, contar_por
 from .modelo import ERRO, FALHOU, IGNORADO, PASSOU, Arquivo
 
-CABECALHO_CSV = ("Titulo", "Severidade", "Labels", "Testes afetados", "Descricao")
-
-
 celula_md = lambda texto: texto.replace("|", "\\|")
 
 nota_de_agrupamento = lambda quantidade: (
@@ -94,21 +91,9 @@ slug = lambda texto, limite=50: (
 nome_do_arquivo = lambda cr: f"CR-{cr.numero:02d}-{slug(cr.titulo)}.md"
 
 
-celula_csv = lambda valor: '"' + valor.replace('"', '""') + '"'
-
-linha_csv = lambda valores: ",".join(map(celula_csv, valores))
-
-#formato do importador do Jira: vírgula, UTF-8 e a CR inteira na descrição
-cr_para_valores = lambda cr: (
-    cr.titulo, cr.severidade, " ".join(cr.labels), "\n".join(cr.testes), cr_para_markdown(cr)
-)
-
-gerar_csv = lambda crs: "\r\n".join(map(linha_csv, (CABECALHO_CSV, *map(cr_para_valores, crs)))) + "\r\n"
-
-
 arquivos_de_saida = lambda crs, pasta: tuple(
     map(lambda cr: Arquivo(pasta / nome_do_arquivo(cr), cr_para_markdown(cr)), crs)
-) + (Arquivo(pasta / "importar-no-jira.csv", gerar_csv(crs)),)
+)
 
 quantas_falharam = lambda por_status: por_status.get(FALHOU, 0) + por_status.get(ERRO, 0)
 

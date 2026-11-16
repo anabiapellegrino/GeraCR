@@ -29,7 +29,7 @@ ler_config = lambda caminho: json.loads(ler_texto(caminho)) if caminho else {}
 
 formato_de = lambda args: args.formato or detectar_formato(args.relatorio)
 
-#newline="": grava as quebras de linha como estão (sem isso o Windows dobra o CR das linhas do CSV)
+#newline="": grava as quebras de linha como estão, então o .md sai igual no Windows e no Linux
 gravar = lambda arquivo: em_sequencia(
     arquivo.caminho.write_text(arquivo.conteudo, encoding="utf-8", newline=""), arquivo.caminho
 )
@@ -40,7 +40,7 @@ gravar_todos = lambda pasta, arquivos: em_sequencia(
 
 mostrar = lambda args, config, testes, crs, gravados: em_sequencia(
     print(resumo(config["projeto"], f"{args.relatorio} ({formato_de(args)})", testes, crs, Path(args.saida))),
-    print(f"{len(gravados)} arquivo(s): {len(crs)} CR(s) em Markdown + importar-no-jira.csv"),
+    print(f"{len(gravados)} CR(s) gravada(s) em Markdown"),
     0,
 )
 
