@@ -16,8 +16,42 @@ nota_de_agrupamento = lambda quantidade: (
     else ()
 )
 
+#os testes de uma CR podem ter mensagens com IDs ou horários diferentes
+mensagens_diferentes = lambda cr: len(set(cr.mensagens)) > 1
+
+legenda_do_obtido = lambda cr: (
+    "Mensagem de erro do primeiro teste (a de cada teste está em Testes afetados):"
+    if mensagens_diferentes(cr)
+    else "Mensagem de erro do primeiro teste (a dos outros é igual):"
+    if len(cr.testes) > 1
+    else "Mensagem de erro do teste:"
+)
+
+#com mensagens diferentes, cada teste mostra a sua, para não perder o ID de nenhum
+linhas_dos_testes = lambda cr: (
+    map(lambda par: f"- `{par[0]}`: `{par[1]}`", zip(cr.testes, cr.mensagens))
+    if mensagens_diferentes(cr)
+    else map(lambda teste: f"- `{teste}`", cr.testes)
+)
+
+#quando o relatório só traz a mensagem, a evidência repetiria o resultado obtido
+secao_de_evidencia = lambda cr: (
+    ()
+    if cr.evidencia.strip() == cr.resultado_obtido.strip()
+    else (
+        "## Evidência",
+        "Trecho do relatório de testes, sem as linhas internas de bibliotecas.",
+        "```text",
+        cr.evidencia,
+        "```",
+        "",
+    )
+)
+
 cr_para_markdown = lambda cr: "\n".join((
     f"# CR-{cr.numero:02d} {cr.titulo}",
+    "",
+    f"**Resumo:** {cr.resumo}",
     "",
     "| Campo | Valor |",
     "|---|---|",
@@ -26,23 +60,20 @@ cr_para_markdown = lambda cr: "\n".join((
     f"| Ambiente | {celula_md(cr.ambiente)} |",
     f"| Labels | {celula_md(', '.join(cr.labels))} |",
     "",
-    f"## Testes afetados ({len(cr.testes)})",
-    *map(lambda teste: f"- `{teste}`", cr.testes),
-    "",
-    *nota_de_agrupamento(len(cr.testes)),
-    "## Resultado esperado",
-    "Os testes listados acima passam.",
-    "",
     "## Resultado obtido",
+    legenda_do_obtido(cr),
     "```text",
     cr.resultado_obtido,
     "```",
     "",
-    "## Evidência",
-    "```text",
-    cr.evidencia,
-    "```",
+    "## Resultado esperado",
+    cr.resultado_esperado,
     "",
+    f"## Testes afetados ({len(cr.testes)})",
+    *linhas_dos_testes(cr),
+    "",
+    *nota_de_agrupamento(len(cr.testes)),
+    *secao_de_evidencia(cr),
     "## Passos para reproduzir",
     "_A completar por quem revisar: o relatório de testes não traz essa informação._",
     "",
@@ -52,7 +83,7 @@ cr_para_markdown = lambda cr: "\n".join((
 ))
 
 
-sem_prefixo = lambda texto: re.sub(r"^\[[^\]]*\]\s*", "", texto)
+sem_prefixo =lambda texto: re.sub(r"^\[[^\]]*\]\s*", "", texto)
 sem_acentos = lambda texto: unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode()
 trocar_simbolos = lambda texto: re.sub(r"[^a-z0-9]+", "-", texto).strip("-")
 
@@ -67,6 +98,7 @@ celula_csv = lambda valor: '"' + valor.replace('"', '""') + '"'
 
 linha_csv = lambda valores: ",".join(map(celula_csv, valores))
 
+#formato do importador do Jira: vírgula, UTF-8 e a CR inteira na descrição
 cr_para_valores = lambda cr: (
     cr.titulo, cr.severidade, " ".join(cr.labels), "\n".join(cr.testes), cr_para_markdown(cr)
 )
@@ -76,7 +108,7 @@ gerar_csv = lambda crs: "\r\n".join(map(linha_csv, (CABECALHO_CSV, *map(cr_para_
 
 arquivos_de_saida = lambda crs, pasta: tuple(
     map(lambda cr: Arquivo(pasta / nome_do_arquivo(cr), cr_para_markdown(cr)), crs)
-) + (Arquivo(pasta / "crs.csv", gerar_csv(crs)),)
+) + (Arquivo(pasta / "importar-no-jira.csv", gerar_csv(crs)),)
 
 quantas_falharam = lambda por_status: por_status.get(FALHOU, 0) + por_status.get(ERRO, 0)
 

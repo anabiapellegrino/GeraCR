@@ -31,11 +31,13 @@ Testes lidos: 9 | passaram: 4 | falharam: 5 | ignorados: 0
 CRs geradas: 3 (a partir de 5 falhas)
 Por severidade: Crítica: 1 | Alta: 1 | Média: 1
   CR-01 [Crítica] [BUG] ConnectionError: gateway indisponível (req=[id]) (3 testes)
-  CR-02 [Alta] [BUG] test_cupom_10_porcento: assert 89.9 == 89.91
-  CR-03 [Média] [BUG] test_frete_gratis_a_partir_de_200: assert 19.9 == 0.0
+  CR-02 [Alta] [BUG] cupom 10 porcento: assert 89.9 == 89.91
+  CR-03 [Média] [BUG] frete gratis a partir de 200: assert 19.9 == 0.0
 ```
 
-Na pasta `saida/loja` ficam um Markdown por CR e um `crs.csv` para importar no Jira de uma vez.
+Na pasta `saida/loja` ficam um Markdown por CR e um `importar-no-jira.csv` para importar todas no Jira de uma vez.
+
+Cada CR começa com um resumo em português ("3 testes falharam pelo mesmo motivo: um serviço demorou demais para responder") e segue a ordem de um relatório de bug: resultado obtido, resultado esperado, testes afetados, evidência e passos para reproduzir. Na evidência, o GeraCR tira as linhas internas de bibliotecas (`node_modules`, `site-packages`) e as pastas do computador de quem rodou os testes, deixando só arquivo e linha.
 
 Opções:
 
@@ -56,7 +58,7 @@ O programa é uma linha de montagem. Cada etapa é um módulo só com funções 
 | 2. Filtrar | `agrupamento.py` | fica só com os testes que falharam |
 | 3. Agrupar | `agrupamento.py` | junta falhas com o mesmo tipo e mensagem, ignorando IDs, horários e durações |
 | 4. Classificar | `classificacao.py` | sugere a severidade pela primeira regra do config que bater |
-| 5. Montar | `montagem.py` | escreve título, testes afetados, resultado obtido, evidência, ambiente e labels |
+| 5. Montar | `montagem.py` | escreve título, resumo, testes afetados, resultados obtido e esperado, evidência, ambiente e labels |
 | 6. Exportar | `exportacao.py` e `cli.py` | gera o texto do Markdown e do CSV e grava os arquivos |
 
 As etapas 2 a 5 viram uma função só com `compor`, em `pipeline.py`:
@@ -172,7 +174,8 @@ Para ferramentas que não geram JUnit XML. No cenário 04, o `gerar_relatorio.py
 - Não abre a CR direto no Jira, porque isso exigiria login e efeitos fora do programa.
 - O agrupamento é uma estimativa. Falhas com a mesma mensagem podem ter causas diferentes, por isso o resultado é rascunho.
 - O relatório de testes não traz os passos para reproduzir, então quem revisa completa.
-- O CSV usa vírgula e UTF-8, como o importador do Jira espera. No Excel, abra por Dados > De Texto/CSV.
+- O CSV é feito para o importador do Jira: vírgula, UTF-8 e a CR inteira na descrição. Aberto direto no Excel ele fica bagunçado, porque o Excel em português espera ponto e vírgula e não reconhece UTF-8 sem aviso.
+- O resumo em português vem de uma tabela de palavras-chave (`EXPLICACOES`, em `montagem.py`). Quando nenhuma bate, a CR diz que o relatório não informa a causa.
 
 ## Estrutura
 

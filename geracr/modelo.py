@@ -8,8 +8,8 @@ Teste = namedtuple("Teste", ("suite", "nome", "status", "tipo_erro", "mensagem",
 
 Grupo = namedtuple("Grupo", ("tipo_erro", "mensagem", "testes", "severidade"), defaults=("",))
 
-CR = namedtuple("CR", ("numero", "titulo", "severidade", "tipo_erro", "resultado_obtido",
-                       "evidencia", "testes", "ambiente", "labels"))
+CR = namedtuple("CR", ("numero", "titulo", "resumo", "severidade", "tipo_erro", "resultado_obtido",
+                       "resultado_esperado", "evidencia", "testes", "mensagens", "ambiente", "labels"))
 
 Arquivo = namedtuple("Arquivo", ("caminho", "conteudo"))
 
