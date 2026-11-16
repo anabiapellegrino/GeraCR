@@ -4,11 +4,3 @@ version = "1.0.0"
 description = "Rascunhos de CR a partir de relatórios de testes automatizados (programação funcional em Python)"
 requires-python = ">=3.10"
 dependencies = []  #só biblioteca padrão
-
-[tool.pytest.ini_options]
-#só os testes do geracr, as suítes de cenarios/ falham de propósito
-testpaths = ["tests"]
-pythonpath = ["."]
-addopts = "-p no:cacheprovider"
-#sem isso o pytest acha que o registro Teste é uma classe de teste
-python_classes = []

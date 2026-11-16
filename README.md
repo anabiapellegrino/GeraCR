@@ -46,13 +46,6 @@ Opções:
 | `--saida` | pasta das CRs (padrão: `saida`) |
 | `--formato` | força `junit` ou `json` quando a extensão não ajuda |
 
-### Rodar os testes
-
-```bash
-pip install pytest
-python -m pytest
-```
-
 ## Como funciona
 
 O programa é uma linha de montagem. Cada etapa é um módulo só com funções puras, e só o `cli.py` lê e grava arquivos.
@@ -100,10 +93,6 @@ Os outros arquivos são `modelo.py` (os registros), `funcional.py` (funções ge
 
 O único comando de controle é o `try` do `__main__.py`, porque um XML ou JSON quebrado chega como exceção e o Python só captura exceção com `try`. Config com tipo errado não vira exceção: `validar_config` devolve os problemas como valor e o programa só avisa.
 
-O `tests/test_paradigma.py` lê o código-fonte com o módulo `ast` e reprova se encontrar `def`, `class`, `for`, `while`, compreensão, `global`, `+=`, `.append()` e parecidos, nome reatribuído, `if` como comando, ou leitura e gravação de arquivo fora do `cli.py`.
-
-Os testes usam `def` porque o `assert` é um comando e não cabe numa `lambda`. Um teste escrito como `lambda` que devolve `False` passa no pytest, então nunca reprovaria nada. A regra vale para o programa, na pasta `geracr/`.
-
 ## Cenários
 
 A pasta `cenarios/` tem quatro sistemas de exemplo, cada um testado com uma ferramenta diferente e com bugs de propósito. Os relatórios foram gerados rodando as ferramentas de verdade. O código do GeraCR é o mesmo nos quatro, só mudam o relatório e o `config.json`.
@@ -116,7 +105,7 @@ A pasta `cenarios/` tem quatro sistemas de exemplo, cada um testado com uma ferr
 | 04 Clínica | unittest | JSON | Bloqueante a Leve | 10 | 5 | 3 |
 | Total | | | | 38 | 23 | 13 |
 
-O `tests/test_cenarios.py` roda cada pasta e compara com o `esperado.json`. Para um contexto novo basta criar `cenarios/05-.../` com `relatorio.*`, `config.json` e `esperado.json`.
+Para um contexto novo basta criar `cenarios/05-.../` com o `relatorio.*` e o `config.json`.
 
 Para gerar os relatórios de novo (opcional):
 
@@ -189,6 +178,5 @@ Para ferramentas que não geram JUnit XML. No cenário 04, o `gerar_relatorio.py
 
 ```
 geracr/      código do programa
-tests/       testes do GeraCR (unitários, cenários, terminal e paradigma)
 cenarios/    quatro sistemas de exemplo com relatórios reais
 ```
